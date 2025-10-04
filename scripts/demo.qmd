@@ -1,0 +1,85 @@
+---
+title: "Trabajo Individual"
+author: "Martin Ceriotti"
+format: html
+editor: visual
+toc: true
+toc-location: left
+---
+
+```{r}
+#| include: false
+#Importacion de librerías
+#| echo: false
+#| message: false
+#| warning: false
+
+library(ggplot2)
+library(tidyverse)
+library(readr)
+```
+
+## Descripción de Tareas
+
+Esta tarea tiene por finalidad que todos los estudiantes logren:
+
+-   Crear su cuenta de GitHub.
+-   Unirse a la *organización* de la asignatura.
+-   Usar de forma básica un *repo*.
+-   Manejar nociones básicas de creación de documentos *Quarto*.
+
+## Indicaciones
+
+Para completar esta tarea, cada estudiante deberá crear en su repositorio un archivo Quarto llamado `demo.qmd` e incluir en él un ejemplo de cada uno de los siguientes elementos:
+
+-   Figura creada con código de R.
+-   Figura a partir de un archivo de imagen externo.
+-   Texto con sintaxis Markdown (negrita y cursiva).
+-   Escritura matemática.
+-   Listas.
+-   Tabla creada con sintaxis Markdown.
+-   Tabla creada con código de R.
+-   Bloques de código ocultos y visibles.
+
+## Figura creada con código de R.
+
+Gráfico de barras horizontales que muestra el importe facturado por la primera apertura de datos.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+data <- read_csv("../data/sector_tecnologico_cie_2011-2015.csv")
+
+data$`Base Imponible (millones de pesos corrientes)` <- gsub(",", ".", data$`Base Imponible (millones de pesos corrientes)`)
+data$`Base Imponible (millones de pesos corrientes)` <- as.numeric(data$`Base Imponible (millones de pesos corrientes)`)
+
+ggplot(data, aes(x=data$`1º apertura`, y=data$`Base Imponible (millones de pesos corrientes)`)) + 
+  xlab("Base Imponible") +
+  ylab("Primera Apertura") +
+  geom_bar(stat = "identity")+
+  coord_flip()
+```
+
+## Figura a partir de un archivo de imagen externo.
+
+Gráfico de barras horizontales que muestra el importe facturado por la segunda apertura de datos.
+
+![Gráfico 1: Importe por Agrupacion 2](graficos/2daAgruRplot.png)
+
+## Texto con sintaxis Markdown (negrita y cursiva).
+
+### Set de datos.
+
+Los ***datos*** usados fueron tomados de <https://datosabiertos.rosario.gob.ar>. *El set de datos muestra la* **facturación anual**\* es en millones de pesos ***para el Sector Tecnológico de Rosario*** *, agrupados en las actividades que lo conforman en dos niveles de apertura, desde el año* **2011 al 2015**\*.
+
+## Escritura Matemática.
+
+Podemos calcular el 21% de la facturación anual en una nueva columna con la fórmula:
+
+$$
+Iva = facturacion*0.21
+$$
+
+## Listas
