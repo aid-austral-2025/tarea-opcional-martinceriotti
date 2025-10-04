@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -73,7 +108,7 @@ window.Quarto = {
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
 <div id="quarto-sidebar-toc-left" class="sidebar toc-left">
   <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+    <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
   <li><a href="#descripción-de-tareas" id="toc-descripción-de-tareas" class="nav-link active" data-scroll-target="#descripción-de-tareas">Descripción de Tareas</a></li>
@@ -86,6 +121,16 @@ window.Quarto = {
   </ul></li>
   <li><a href="#escritura-matemática." id="toc-escritura-matemática." class="nav-link" data-scroll-target="#escritura-matemática.">Escritura Matemática.</a></li>
   <li><a href="#listas" id="toc-listas" class="nav-link" data-scroll-target="#listas">Listas</a></li>
+  <li><a href="#tablas" id="toc-tablas" class="nav-link" data-scroll-target="#tablas">Tablas</a></li>
+  <li><a href="#tabla-creada-con-sintaxis-markdown-en-r" id="toc-tabla-creada-con-sintaxis-markdown-en-r" class="nav-link" data-scroll-target="#tabla-creada-con-sintaxis-markdown-en-r">Tabla creada con sintaxis Markdown en R</a>
+  <ul class="collapse">
+  <li><a href="#resumen-de-facturación" id="toc-resumen-de-facturación" class="nav-link" data-scroll-target="#resumen-de-facturación">Resumen de facturación</a></li>
+  </ul></li>
+  <li><a href="#bloques-de-código-visibles-y-ocultos." id="toc-bloques-de-código-visibles-y-ocultos." class="nav-link" data-scroll-target="#bloques-de-código-visibles-y-ocultos.">Bloques de código visibles y ocultos.</a>
+  <ul class="collapse">
+  <li><a href="#bloques-visibles" id="toc-bloques-visibles" class="nav-link" data-scroll-target="#bloques-visibles">Bloques visibles:</a></li>
+  <li><a href="#bloques-ocultos" id="toc-bloques-ocultos" class="nav-link" data-scroll-target="#bloques-ocultos">Bloques ocultos:</a></li>
+  </ul></li>
   </ul>
 </nav>
 </div>
@@ -160,7 +205,7 @@ window.Quarto = {
 <p>Gráfico de barras horizontales que muestra el importe facturado por la segunda apertura de datos.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="graficos/2daAgruRplot.png" class="img-fluid figure-img"></p>
+<p><img src="./images/2daAgruRplot.png" class="img-fluid figure-img"></p>
 <figcaption>Gráfico 1: Importe por Agrupacion 2</figcaption>
 </figure>
 </div>
@@ -175,12 +220,592 @@ window.Quarto = {
 <section id="escritura-matemática." class="level2">
 <h2 class="anchored" data-anchor-id="escritura-matemática.">Escritura Matemática.</h2>
 <p>Podemos calcular el 21% de la facturación anual en una nueva columna con la fórmula:</p>
-<p><span class="math display">\[
+<p><span id="eq-iva"><span class="math display">\[
 Iva = facturacion*0.21
-\]</span></p>
+\tag{1}\]</span></span></p>
 </section>
 <section id="listas" class="level2">
 <h2 class="anchored" data-anchor-id="listas">Listas</h2>
+<p>Las columnas del data set de datos son:</p>
+<ol type="1">
+<li>“COD CIIU F.883”<br>
+</li>
+<li>“Sector”<br>
+</li>
+<li>“1º apertura”<br>
+</li>
+<li>“2º apertura”<br>
+</li>
+<li>“Año”<br>
+</li>
+<li>“Base Imponible (millones de pesos corrientes)”</li>
+</ol>
+</section>
+<section id="tablas" class="level2">
+<h2 class="anchored" data-anchor-id="tablas">Tablas</h2>
+<p>Facturación total por primera apertura.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 86%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">1º apertura</th>
+<th style="text-align: right;">Facturacion</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Fabricación de productos informáticos, electrónicos y ópticos</td>
+<td style="text-align: right;">2114.3157</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Industria farmacéutica</td>
+<td style="text-align: right;">1599.4481</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Investigación y Desarrollo</td>
+<td style="text-align: right;">105.8332</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Servicios de Programación y Consultoría Informática y actividades conexas</td>
+<td style="text-align: right;">2123.6658</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Servicios de Telecomunicaciones</td>
+<td style="text-align: right;">14097.5898</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="tabla-creada-con-sintaxis-markdown-en-r" class="level2">
+<h2 class="anchored" data-anchor-id="tabla-creada-con-sintaxis-markdown-en-r">Tabla creada con sintaxis Markdown en R</h2>
+<section id="resumen-de-facturación" class="level3">
+<h3 class="anchored" data-anchor-id="resumen-de-facturación">Resumen de facturación</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div id="sdfdonpecq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#sdfdonpecq table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#sdfdonpecq thead, #sdfdonpecq tbody, #sdfdonpecq tfoot, #sdfdonpecq tr, #sdfdonpecq td, #sdfdonpecq th {
+  border-style: none;
+}
+
+#sdfdonpecq p {
+  margin: 0;
+  padding: 0;
+}
+
+#sdfdonpecq .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#sdfdonpecq .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#sdfdonpecq .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#sdfdonpecq .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#sdfdonpecq .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#sdfdonpecq .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sdfdonpecq .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#sdfdonpecq .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#sdfdonpecq .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#sdfdonpecq .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#sdfdonpecq .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#sdfdonpecq .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#sdfdonpecq .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#sdfdonpecq .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#sdfdonpecq .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#sdfdonpecq .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#sdfdonpecq .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#sdfdonpecq .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#sdfdonpecq .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sdfdonpecq .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#sdfdonpecq .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#sdfdonpecq .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#sdfdonpecq .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sdfdonpecq .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#sdfdonpecq .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#sdfdonpecq .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sdfdonpecq .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sdfdonpecq .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#sdfdonpecq .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sdfdonpecq .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#sdfdonpecq .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sdfdonpecq .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#sdfdonpecq .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sdfdonpecq .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#sdfdonpecq .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sdfdonpecq .gt_left {
+  text-align: left;
+}
+
+#sdfdonpecq .gt_center {
+  text-align: center;
+}
+
+#sdfdonpecq .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#sdfdonpecq .gt_font_normal {
+  font-weight: normal;
+}
+
+#sdfdonpecq .gt_font_bold {
+  font-weight: bold;
+}
+
+#sdfdonpecq .gt_font_italic {
+  font-style: italic;
+}
+
+#sdfdonpecq .gt_super {
+  font-size: 65%;
+}
+
+#sdfdonpecq .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#sdfdonpecq .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#sdfdonpecq .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#sdfdonpecq .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#sdfdonpecq .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#sdfdonpecq .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#sdfdonpecq .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#sdfdonpecq .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#sdfdonpecq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="Medida" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Medida</th>
+<th id="Valor" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Valor</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Medida">Media</td>
+<td class="gt_row gt_right" headers="Valor">364.3791</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Medida">Máximo</td>
+<td class="gt_row gt_right" headers="Valor">4107.9886</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Medida">Mínimo</td>
+<td class="gt_row gt_right" headers="Valor">0.0000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="bloques-de-código-visibles-y-ocultos." class="level2">
+<h2 class="anchored" data-anchor-id="bloques-de-código-visibles-y-ocultos.">Bloques de código visibles y ocultos.</h2>
+<section id="bloques-visibles" class="level3">
+<h3 class="anchored" data-anchor-id="bloques-visibles">Bloques visibles:</h3>
+<p>En este caso se muestran tanto el código que se ejecuta como la salida.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> COD CIIU F.883     Sector          1º apertura        2º apertura       
+ Min.   : 21.0   Length:55          Length:55          Length:55         
+ 1st Qu.: 62.0   Class :character   Class :character   Class :character  
+ Median :262.0   Mode  :character   Mode  :character   Mode  :character  
+ Mean   :187.6                                                           
+ 3rd Qu.:265.0                                                           
+ Max.   :267.0                                                           
+      Año       Base Imponible (millones de pesos corrientes)
+ Min.   :2011   Min.   :   0.00                              
+ 1st Qu.:2012   1st Qu.:  19.54                              
+ Median :2013   Median :  48.64                              
+ Mean   :2013   Mean   : 364.38                              
+ 3rd Qu.:2014   3rd Qu.: 251.21                              
+ Max.   :2015   Max.   :4107.99                              </code></pre>
+</div>
+</div>
+</section>
+<section id="bloques-ocultos" class="level3">
+<h3 class="anchored" data-anchor-id="bloques-ocultos">Bloques ocultos:</h3>
+<p>En este caso se muestran sólo la salida de colnames(data).</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "COD CIIU F.883"                               
+[2] "Sector"                                       
+[3] "1º apertura"                                  
+[4] "2º apertura"                                  
+[5] "Año"                                          
+[6] "Base Imponible (millones de pesos corrientes)"</code></pre>
+</div>
+</div>
+</section>
 </section>
 
 </main>

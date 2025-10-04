@@ -32,3 +32,9 @@ tabla <- data %>%
 
 library(knitr)
 kable(tabla, escape = FALSE)
+
+colnames(data)
+
+mean(data$`Base Imponible (millones de pesos corrientes)`)
+
+summary(data)

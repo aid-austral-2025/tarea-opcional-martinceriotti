@@ -5,6 +5,7 @@ format: html
 editor: visual
 toc: true
 toc-location: left
+toc-title: "Tabla de contenidos"
 ---
 
 ```{r}
@@ -15,8 +16,10 @@ toc-location: left
 #| warning: false
 
 library(ggplot2)
+library(knitr)
 library(tidyverse)
 library(readr)
+library(gt)
 ```
 
 ## Descripción de Tareas
@@ -66,7 +69,7 @@ ggplot(data, aes(x=data$`1º apertura`, y=data$`Base Imponible (millones de peso
 
 Gráfico de barras horizontales que muestra el importe facturado por la segunda apertura de datos.
 
-![Gráfico 1: Importe por Agrupacion 2](graficos/2daAgruRplot.png)
+![Gráfico 1: Importe por Agrupacion 2](./images/2daAgruRplot.png)
 
 ## Texto con sintaxis Markdown (negrita y cursiva).
 
@@ -80,6 +83,70 @@ Podemos calcular el 21% de la facturación anual en una nueva columna con la fó
 
 $$
 Iva = facturacion*0.21
-$$
+$$ {#eq-iva}
 
 ## Listas
+
+Las columnas del data set de datos son:
+
+1.  "COD CIIU F.883"\
+2.  "Sector"\
+3.  "1º apertura"\
+4.  "2º apertura"\
+5.  "Año"\
+6.  "Base Imponible (millones de pesos corrientes)"
+
+## Tablas
+
+Facturación total por primera apertura.
+
+```{r}
+#| echo: false
+tabla <- data %>%
+  group_by(`1º apertura`) %>%
+  summarise(Facturacion = sum(`Base Imponible (millones de pesos corrientes)`))
+
+
+kable(tabla, escape = FALSE)
+```
+
+## Tabla creada con sintaxis Markdown en R
+
+### Resumen de facturación
+
+```{r}
+#| echo: false
+   #| classes: striped
+    tibble::tribble(
+      ~Medida, ~Valor,
+      "Media", mean(data$`Base Imponible (millones de pesos corrientes)`),
+      "Máximo", max(data$`Base Imponible (millones de pesos corrientes)`),
+      "Mínimo", min(data$`Base Imponible (millones de pesos corrientes)`)
+    ) |> gt()
+```
+
+## Bloques de código visibles y ocultos.
+
+### Bloques visibles:
+
+En este caso se muestran tanto el código que se ejecuta como la salida.
+
+```{r}
+#| echo: true
+#| message: false
+#| warning: false
+
+summary(data)
+
+```
+
+### Bloques ocultos:
+
+En este caso se muestran sólo la salida de colnames(data).
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+colnames(data)
+```
